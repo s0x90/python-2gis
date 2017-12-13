@@ -20,7 +20,7 @@ setup(
     long_description=__doc__,
     license='BSD',
     packages=find_packages(),
-    install_requires=('requests', 'six'),
+    install_requires=('requests', 'six', 'envparse'),
     test_suite='tests',
     classifiers=(
         'Development Status :: 4 - Beta',

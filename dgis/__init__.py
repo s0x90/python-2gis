@@ -10,7 +10,7 @@ __version__ = '1.3.0'
 class API(object):
     """2GIS API"""
 
-    def __init__(self, key, host='catalog.api.2gis.ru', version='1.3', register_views=True):
+    def __init__(self, key, host='catalog.api.2gis.ru', version='2.0', register_views=True):
         """
 
         Parameters::
@@ -62,28 +62,22 @@ class API(object):
     def search(self, **kwargs):
         """Firms search
 
+        old URI
         http://api.2gis.ru/doc/firms/searches/search/
+
+        new URI
+        http://catalog.api.2gis.ru/2.0/catalog/branch/search
         """
 
         point = kwargs.pop('point', False)
         if point:
             kwargs['point'] = '%s,%s' % (point[0], point[1])
 
-        bound = kwargs.pop('bound', False)
-        if bound:
-            kwargs['bound[point1]'] = bound[0]
-            kwargs['bound[point2]'] = bound[1]
-
-        filters = kwargs.pop('filters', False)
-        if filters:
-            for k, v in filters.items():
-                kwargs['filters[%s]' % k] = v
-
         return self._search(**kwargs)
 
     _search = bind_api(
-        path='/search',
-        allowed_param=['what', 'where', 'point', 'radius', 'bound', 'page', 'pagesize', 'sort', 'filters'],
+        path='/branch/search',
+        allowed_param=['q', 'region_id', 'point', 'radius', 'page', 'pagesize', 'sort'],
     )
 
     def search_in_rubric(self, **kwargs):

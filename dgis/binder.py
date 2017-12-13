@@ -48,17 +48,17 @@ def execute(self, *args, **kwargs):
 
     parameters.update({
         'key': self.api.key,
-        'version': self.api.version,
         'output': 'json',
     })
 
-    url = urlparse.urlunparse(['http', self.api.host, self.path, None, urlencode(parameters), None])
+    url = urlparse.urlunparse(['http', '%s/%s/catalog' % (self.api.host, self.api.version), self.path, None,
+                               urlencode(parameters), None])
 
     response = requests.get(url).json
     if inspect.ismethod(response):
         response = response()
 
-    if response['response_code'] != '200':
+    if response['meta']['code'] != 200:
         raise DgisError(int(response['response_code']), response['error_message'], response['error_code'])
 
     # Register view if required
