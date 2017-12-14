@@ -80,6 +80,19 @@ class API(object):
         allowed_param=['q', 'region_id', 'point', 'radius', 'page', 'pagesize', 'fields', 'sort'],
     )
 
+    def get_branch(self, **kwargs):
+        """
+        get company branch
+        http://catalog.api.2gis.ru/2.0/catalog/branch/get
+        """
+
+        return self._get_branch(**kwargs)
+
+    _get_branch = bind_api(
+        path='branch/get',
+        allowed_param=['id', 'fields']
+    )
+
     def search_in_rubric(self, **kwargs):
         """Firms search in rubric
 
