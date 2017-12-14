@@ -58,8 +58,8 @@ def execute(self, *args, **kwargs):
     if inspect.ismethod(response):
         response = response()
 
-    if not response.get('meta') or response['meta']['code'] != 200:
-        raise DgisError(int(response['response_code']), response['error_message'], response['error_code'])
+    if response['meta']['code'] != 200:
+        raise DgisError(int(response['meta']['code']), response['meta']['error'], response['meta']['api_version'])
 
     # Register view if required
     if self.register_views and self.api.register_views:

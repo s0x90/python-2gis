@@ -4,10 +4,10 @@
 class DgisError(Exception):
     """2Gis API error"""
 
-    def __init__(self, code, message, error_code):
+    def __init__(self, code, error, api_version):
         self.code = code
-        self.message = message
-        self.error_code = error_code
+        self.error = error
+        self.api_version = api_version
 
     def __str__(self):
         return self.message
