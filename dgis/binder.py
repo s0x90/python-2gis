@@ -58,7 +58,7 @@ def execute(self, *args, **kwargs):
     if inspect.ismethod(response):
         response = response()
 
-    if response['meta']['code'] != 200:
+    if not response.get('meta') or response['meta']['code'] != 200:
         raise DgisError(int(response['response_code']), response['error_message'], response['error_code'])
 
     # Register view if required
