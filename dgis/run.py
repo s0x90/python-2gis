@@ -8,4 +8,5 @@ if __name__ == '__main__':
     env.read_envfile()
     API_KEY = env('API_KEY', None)
     client = dgis.API(API_KEY)
-    print(client.search(q=u'пиво', point=[56.001573, 54.7069285], radius=1000, sort='distance'))
+    print(client.search(q=u'пиво', point=[56.001573, 54.7069285], radius=1000,
+                        fields='items.adm_div, items.address, items.point', sort='distance'))

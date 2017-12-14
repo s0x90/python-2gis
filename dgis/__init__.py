@@ -77,7 +77,7 @@ class API(object):
 
     _search = bind_api(
         path='/branch/search',
-        allowed_param=['q', 'region_id', 'point', 'radius', 'page', 'pagesize', 'sort'],
+        allowed_param=['q', 'region_id', 'point', 'radius', 'page', 'pagesize', 'fields', 'sort'],
     )
 
     def search_in_rubric(self, **kwargs):
