@@ -10,4 +10,4 @@ class DgisError(Exception):
         self.api_version = api_version
 
     def __str__(self):
-        return self.message
+        return self.error

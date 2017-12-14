@@ -59,7 +59,8 @@ def execute(self, *args, **kwargs):
         response = response()
 
     if response['meta']['code'] != 200:
-        raise DgisError(int(response['meta']['code']), response['meta']['error'], response['meta']['api_version'])
+        raise DgisError(int(response['meta']['code']), response['meta']['error']['message'],
+                        response['meta']['api_version'])
 
     # Register view if required
     if self.register_views and self.api.register_views:
